@@ -1,0 +1,19 @@
+<ng-template [ngIf]="page.totalElements > 0" [ngIfElse]="emptyResultSet">
+    <div class="row row-cols-1 row-cols-md-1 g-4">
+        <app-post-card class="col"
+            *ngFor="let post of page.content |
+                paginate: { 
+                    id: 'server', 
+                    itemsPerPage: page.size, 
+                    currentPage: page.number + 1, 
+                    totalItems: page.totalElements }"
+            [post]=post>
+        </app-post-card>
+    </div>
+</ng-template>
+<ng-template #emptyResultSet>
+    <div>
+        <br>
+        <h5>Публикаций ещё нет.</h5>
+    </div>
+</ng-template>
